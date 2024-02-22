@@ -1,0 +1,2 @@
+drop table if exists product;
+create table product (product_type tinyint check (product_type between 0 and 2), customer_id binary(36), id binary(36) not null, primary key (id)) engine=InnoDB;
