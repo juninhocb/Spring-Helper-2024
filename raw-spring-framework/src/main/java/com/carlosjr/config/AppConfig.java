@@ -1,5 +1,7 @@
-package com.carlosjr;
+package com.carlosjr.config;
 
+import com.carlosjr.EventStartedNotifier;
+import com.carlosjr.TRunner;
 import com.carlosjr.product.ProductService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

@@ -13,7 +13,8 @@ public class TRunner implements Runnable{
 
     @Override
     public void run() {
-        Product stubProduct = new Product(1, "Stub Product");
+        Product stubProduct = new Product();
+        stubProduct.setName("project not stored!");
         productService.displayProduct(stubProduct);
     }
 }

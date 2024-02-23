@@ -5,21 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="372eb990-4188-4510-8953-367e8d58c5a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/DatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/EventStartedNotifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/RunCtx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/TRunner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/PersistenceJPAConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/web/WebAppInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/DatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/RunCtx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/RunCtx.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/TRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/TRunner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +67,7 @@
       <module name="raw-spring-framework" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.carlosjr.*" />
+          <option name="PATTERN" value="com.carlosjr.config.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
