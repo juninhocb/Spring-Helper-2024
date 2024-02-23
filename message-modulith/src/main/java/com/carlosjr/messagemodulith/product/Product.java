@@ -15,7 +15,10 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     // no relationship, message will care about this!
     private UUID customerId;

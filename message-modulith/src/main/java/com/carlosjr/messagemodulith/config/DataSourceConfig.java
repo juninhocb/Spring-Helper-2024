@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -44,20 +43,7 @@ public class DataSourceConfig {
 
         Map<Integer, String> queriesFromFile = getQueriesFromFile("classpath:InitCustomerDb.txt");
 
-        try (Connection connection = ds.getConnection()){
-
-            Statement stmt = connection.createStatement();
-            queriesFromFile.forEach( ( index, command ) -> {
-                try {
-                    stmt.execute(command);
-                    logger.info("Index {} :::: {} executed! ", index, command );
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-
-        }
+        initDatabase(queriesFromFile, ds);
         return ds;
 
     }
@@ -71,21 +57,7 @@ public class DataSourceConfig {
                 .build();
 
         Map<Integer, String> queriesFromFile = getQueriesFromFile("classpath:InitProductDb.txt");
-        // DRY ( no, exercise typing )
-        try (Connection connection = ds.getConnection()){
-
-            Statement stmt = connection.createStatement();
-            queriesFromFile.forEach( ( index, command ) -> {
-                try {
-                    stmt.execute(command);
-                    logger.info("Index {} :::: {} executed! ", index, command );
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
-
-        }
-
+        initDatabase(queriesFromFile, ds);
         return ds;
     }
 
@@ -96,6 +68,23 @@ public class DataSourceConfig {
                 logger.info("DataSource injected {} ::: {} ", key, value );
             });
         };
+    }
+
+    private void initDatabase(Map<Integer, String> commands, DataSource ds) throws SQLException{
+
+        try (Connection connection = ds.getConnection()){
+
+            Statement stmt = connection.createStatement();
+            commands.forEach( ( index, command ) -> {
+                try {
+                    stmt.execute(command);
+                    logger.info("Index {} :::: {} executed! ", index, command );
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+
+        }
     }
 
     private Map<Integer, String> getQueriesFromFile(String locale) throws IOException {

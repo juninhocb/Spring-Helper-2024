@@ -2,6 +2,7 @@ package com.carlosjr.messagemodulith;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
@@ -9,7 +10,12 @@ import org.springframework.context.annotation.ComponentScan;
 public class MessageModulithApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MessageModulithApplication.class, args);
+		ApplicationContext ctx = SpringApplication.run(MessageModulithApplication.class, args);
+		for ( String beanName : ctx.getBeanDefinitionNames()){
+
+			//System.out.println(beanName);
+
+		}
 	}
 
 }

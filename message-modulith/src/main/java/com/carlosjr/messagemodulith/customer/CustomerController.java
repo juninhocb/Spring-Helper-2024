@@ -1,7 +1,6 @@
 package com.carlosjr.messagemodulith.customer;
 
 import com.carlosjr.messagemodulith.product.ProductType;
-import jakarta.persistence.Id;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

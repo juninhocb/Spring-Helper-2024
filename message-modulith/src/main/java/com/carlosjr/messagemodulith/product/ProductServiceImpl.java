@@ -5,31 +5,18 @@ import com.carlosjr.messagemodulith.messages.CustomMessageListener;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.event.EventListener;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
-import javax.sql.DataSource;
-import java.nio.charset.StandardCharsets;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
 @Service
+@Primary
+@RequiredArgsConstructor
 public class ProductServiceImpl implements CustomMessageListener, ProductService {
     private static final Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
-    private final JdbcTemplate jdbcTemplate;
-    private final ProductRowMapper productRowMapper;
-
-    // TODO: refactor to use EM setting properly ds at Bean configuration With Modulith
-    public ProductServiceImpl (@Qualifier("productDataSource") DataSource dataSource, ProductRowMapper productRowMapper){
-        jdbcTemplate = new JdbcTemplate();
-        jdbcTemplate.setDataSource(dataSource);
-        this.productRowMapper = productRowMapper;
-    }
+    private final ProductRepository productRepository;
 
     @EventListener
     @Override
@@ -48,14 +35,10 @@ public class ProductServiceImpl implements CustomMessageListener, ProductService
 
     @Override
     public void storeBuy(Product product) {
-        String sql = "INSERT INTO `product` ( id, customer_id, product_type ) VALUES ( ?, ?, ? )";
-        int productTypeValue = product.getProductType().ordinal();
-        jdbcTemplate.update(sql, new Object[] {UUID.randomUUID().toString().getBytes(StandardCharsets.UTF_8),
-                product.getCustomerId().toString().getBytes(StandardCharsets.UTF_8) ,productTypeValue});
+        productRepository.save(product);
     }
     @Override
     public List<Product> selledProducts() {
-        String sql = "SELECT * FROM  `product`";
-        return jdbcTemplate.query(sql, productRowMapper);
+        return productRepository.findAll();
     }
 }
