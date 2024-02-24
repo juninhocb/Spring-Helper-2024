@@ -4,17 +4,19 @@ import com.carlosjr.EventStartedNotifier;
 import com.carlosjr.TRunner;
 import com.carlosjr.product.ProductService;
 import jakarta.annotation.PostConstruct;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
+
 @Configuration
-@ComponentScan("com.carlosjr.product")
-@Import({ DatabaseConfig.class, PersistenceJPAConfig.class })
+@ComponentScan({ "com.carlosjr.product" })
+@Import({ DatabaseConfig.class, PersistenceJPAConfig.class, WebConfig.class })
 public class AppConfig {
     private final ProductService productService;
-    public AppConfig(ProductService productService){
+    public AppConfig(ProductService productService, ApplicationContext applicatixonContext){
         this.productService = productService;
     }
 
@@ -29,6 +31,8 @@ public class AppConfig {
     public EventStartedNotifier notifier(){
         return new EventStartedNotifier();
     }
+
+
 
 
 

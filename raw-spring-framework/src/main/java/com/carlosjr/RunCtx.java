@@ -2,21 +2,18 @@ package com.carlosjr;
 
 
 import com.carlosjr.config.AppConfig;
-import com.carlosjr.config.DatabaseConfig;
-import com.carlosjr.config.PersistenceJPAConfig;
-import com.carlosjr.config.WebConfig;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 
 
 public class RunCtx {
     public static void main(String[] args) {
 
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(AppConfig.class);
+        ctx.refresh();
 
         for ( String beanName : ctx.getBeanDefinitionNames()){
             System.out.println(beanName);
         }
-
     }
 }
