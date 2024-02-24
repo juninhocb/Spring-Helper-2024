@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="372eb990-4188-4510-8953-367e8d58c5a1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/PersistenceJPAConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/web/WebAppInitializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/AppConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/DatabaseConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/RunCtx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/RunCtx.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/TRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/TRunner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/carlosjr/config/AppConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,9 +25,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2ckGP4whMh3MbPaac2URecCsYdG" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,20 +36,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Application.RunCtx.executor": "Run",
-    "Maven.raw-spring-framework [clean].executor": "Run",
-    "Maven.raw-spring-framework [compile].executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Application.RunCtx.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raw-spring-framework [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raw-spring-framework [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="RunCtx" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.carlosjr.RunCtx" />
