@@ -28,93 +28,81 @@ public class CustomerSocket {
 
             var communication =  serverSocket.accept();
 
+            logger.info("New connection arrived!");
+
             try(InputStream data = communication.getInputStream()){
 
                 try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(data))){
                     var responseBuilder = new StringBuilder();
                     String line;
-                    CustomerResourcesEnum customerResourcesEnum = null;
-                    int counter = 0;
+                    CustomerResourcesEnum customerResourcesEnum;
                     while ( ( line = bufferedReader.readLine() ) != null){
 
-                        if ( counter == 0 ){
+                        if ( line.isEmpty())
+                            continue;
 
-                            int resourceId =  Integer.parseInt(line);
+                        int resourceId =  Integer.parseInt(line.trim().split("P")[0]);
 
-                            switch (resourceId){
-                                case 0:
-                                    customerResourcesEnum = CustomerResourcesEnum.FIND_ALL;
-                                    responseBuilder.append(customerService.getAll());
-                                    break;
-                                case 1:
-                                    customerResourcesEnum = CustomerResourcesEnum.FIND_BY_ID;
-                                    break;
-                                case 2:
-                                    customerResourcesEnum = CustomerResourcesEnum.CREATE;
-                                    break;
-                                case 3:
-                                    customerResourcesEnum = CustomerResourcesEnum.DELETE;
-                                    break;
-                                default:
-                                    throw new IllegalStateException("Not a valid resource");
-                            }
-
+                        switch (resourceId){
+                            case 0:
+                                customerResourcesEnum = CustomerResourcesEnum.FIND_ALL;
+                                responseBuilder.append(customerService.getAll());
+                                break;
+                            case 1:
+                                customerResourcesEnum = CustomerResourcesEnum.FIND_BY_ID;
+                                break;
+                            case 2:
+                                customerResourcesEnum = CustomerResourcesEnum.CREATE;
+                                break;
+                            case 3:
+                                customerResourcesEnum = CustomerResourcesEnum.DELETE;
+                                break;
+                            default:
+                                throw new IllegalStateException("Not a valid resource");
                         }
 
-                        if ( counter == 1){
 
-                            switch (customerResourcesEnum){
-                                /*Assumes that object comes in name:age format */
-                                case CustomerResourcesEnum.CREATE -> {
+                        switch (customerResourcesEnum){
+                            /*Assumes that object comes in name:age format */
+                            case CustomerResourcesEnum.CREATE -> {
+                                String customerData = line.split("P")[1];
+                                var name = customerData.split(":")[0];
 
-                                    var name = Arrays.toString(line.getBytes(StandardCharsets.UTF_8))
-                                            .split(":")[0];
+                                var age = customerData.split(":")[1];
 
-                                    var age = Arrays.toString(line.getBytes(StandardCharsets.UTF_8))
-                                            .split(":")[1];
+                                var createdCustomer = customerService.create(Customer.builder()
+                                        .name(name)
+                                        .age(Integer.parseInt(age.trim()))
+                                        .build());
 
-                                    var createdCustomer = customerService.create(Customer.builder()
-                                            .name(name)
-                                            .age(Integer.valueOf(age))
-                                            .build());
+                                assert createdCustomer != null;
 
-                                    assert createdCustomer != null;
+                                responseBuilder.append(createdCustomer);
+                            }
 
-                                    responseBuilder.append(createdCustomer);
-                                }
+                            case CustomerResourcesEnum.FIND_BY_ID -> {
 
-                                case CustomerResourcesEnum.FIND_BY_ID -> {
+                                var customer = customerService.getById( Integer.parseInt(line.trim().split("P")[1]));
 
-                                    var customer = customerService.getById( Integer.parseInt(line));
+                                assert customer != null;
 
-                                    assert customer != null;
-
-                                    responseBuilder.append(customer);
-
-                                }
-
-                                case CustomerResourcesEnum.DELETE -> {
-                                    customerService.deleteById( Integer.parseInt(line));
-
-                                    responseBuilder.append("Deleted successfully");
-                                }
+                                responseBuilder.append(customer);
 
                             }
 
+                            case CustomerResourcesEnum.DELETE -> {
+                                customerService.deleteById( Integer.parseInt(line.trim().split("P")[1]));
+
+                                responseBuilder.append("Deleted successfully");
+                            }
+
                         }
-
-                        if ( customerResourcesEnum.equals(CustomerResourcesEnum.FIND_ALL))
-                            break;
-
-                        counter++;
 
                     }
 
-                    var response = communication.getOutputStream();
+                    logger.info("Responding ::: {} data", responseBuilder);
 
-                    response.write(responseBuilder.toString().getBytes(StandardCharsets.UTF_8));
-                    response.flush();
-                    response.close();
+                    logger.info("Current customers on database is {}", customerService.getAll());
 
                 }
 

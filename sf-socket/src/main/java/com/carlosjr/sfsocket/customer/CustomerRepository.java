@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class CustomerRepository {
-    static final String FIND_ALL = "SELECT ( id, name, age ) FROM customer";
-    static final String FIND_BY_ID = "SELECT ( id, name, age ) FROM customer WHERE id = ? ";
+    static final String FIND_ALL = "SELECT id, name, age  FROM customer";
+    static final String FIND_BY_ID = "SELECT id, name, age  FROM customer WHERE id = ? ";
     static final String INSERT_INTO = "INSERT INTO customer ( name, age ) VALUES ( ? , ? ) ";
     static final String DELETE_BY_ID = "DELETE FROM customer WHERE id = ? ";
 
@@ -30,23 +30,18 @@ public class CustomerRepository {
                 .ofNullable(jdbcTemplate.queryForObject(FIND_BY_ID, customerRowMapper, id));
     }
 
-    Customer create(Customer customer){
+    Customer create(Customer customer) {
+        Object[] parameters = {customer.name(), customer.age()};
+        int rowsAffected = jdbcTemplate.update(INSERT_INTO, parameters);
 
-        KeyHolder keyHolder = new GeneratedKeyHolder();
+        if (rowsAffected > 0) {
+            Integer generatedId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
 
-        jdbcTemplate.update(INSERT_INTO, keyHolder, customer.name(), customer.age());
-
-        if ( keyHolder.getKey() instanceof Integer id){
-
-            var customerOptional = getById(id);
-
-            if ( customerOptional.isPresent()){
-                return customerOptional.get();
-            }
-
+            return getById(generatedId)
+                    .orElseThrow(() -> new CustomerRepositoryException("Failed to retrieve newly created customer"));
         }
 
-        throw new CustomerRepositoryException("Cannot create customer ::: " + customer);
+        throw new CustomerRepositoryException("Failed to create customer: " + customer);
     }
     void deleteById(Integer id){
 
