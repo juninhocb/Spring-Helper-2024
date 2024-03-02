@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Customer Test</title>
+</head>
+<body>
+    <h1> Customers Test Web Socket - Result on console </h1>
+    <div>
+        <div>
+            <p> Get all customers </p>
+            <button onclick="handleGetAll()"> SEND </button>
+        </div>
+        <div>
+            <p> Get customer by Id</p>
+            <button onclick="handleGetById()"> SEND </button>
+        </div>
+        <div> 
+            <p>Create customer</p>
+            <button onclick="handleCreate()"> SEND </button>
+        </div>
+        <div> 
+            <p>Delete customer</p>
+            <button onclick="handleDelete()"> SEND </button>
+        </div>
+    </div>
+</body>
+<script>
+    const socket = new WebSocket('ws://localhost:8080/customer');
+
+    socket.onopen = function(event) {
+        console.log('WebSocket connection established.');
+    };
+
+    socket.onmessage = function(event) {
+        console.log('Received message:', event.data);
+    };
+
+    socket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = function(event) {
+        console.log('WebSocket connection closed.');
+    };
+
+    function handleGetAll(){
+        socket.send('0C');
+    }
+
+    function handleGetById(){
+        socket.send('1C3')
+    }
+
+    function handleCreate(){
+        socket.send('2C7:gerrard')
+    }
+
+    function handleDelete(){
+        socket.send('3C7')
+    }
+</script>
+</html>
